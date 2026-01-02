@@ -31,35 +31,26 @@ public class EjericiciosUtp5 {
         if (confirmaHora) {                    
             
             segundo++;
-            if (segundo != 60) {              
-                System.out.println("la Hora despues es: " + hora + ":" + minuto + ":" + segundo);
-            }
             
             if (segundo == 60) {
                 segundo = 0;
                 minuto++;
                 
-                if (minuto != 60) {              
-                    System.out.println("la Hora despues es: " + hora + ":" + minuto + ":" + segundo);
-                }
                 
                 if (minuto == 60) {
                     minuto = 0;
                     hora++;
-
-                    if (hora != 24) {              
-                        System.out.println("la Hora despues es: " + hora + ":" + minuto + ":" + segundo);
-
-                    }
                     
                     if (hora == 24) {
                         hora =0;
-                        System.out.println("la hora despues es: " + hora + ":" + minuto + ":" + segundo);
                     }
                 }
                 
             }
-
+            
+            System.out.println("------------------------");
+            //  (%02d:%02d:%02d) Es una "instrucción especial" para imprimir en formato hora
+            System.out.printf("la hora siguiente es: %02d:%02d:%02d \n", hora , minuto , segundo);
 
         } else {
             System.out.println("Hora inexistente");
