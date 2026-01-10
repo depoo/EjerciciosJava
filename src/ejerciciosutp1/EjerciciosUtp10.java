@@ -21,7 +21,7 @@ public class EjerciciosUtp10 {
             System.out.print("Ingrese su codigo: ");
             String codigo = teclado.next();
             
-            Matcher evaluarCodigo = patronCodigo.matcher(codigo);
+            Matcher evaluarCodigo = patronCodigo.matcher(codigo); // evalua el codigo si cumple con la estructura del regex
             boolean verificarCodigo = evaluarCodigo.matches(); // matches() solo devuelve True o False
             String mensajeFinal = (verificarCodigo) ? "Codigo correcto" : "Codigo incorrecto";
             System.out.println(mensajeFinal);
