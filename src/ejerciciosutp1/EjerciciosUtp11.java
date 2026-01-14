@@ -12,7 +12,7 @@ public class EjerciciosUtp11 {
         // (?i)   -> Ignora mayúsculas/minúsculas en todo el patrón
         // ^      -> Inicio
         // $      -> Fin
-        Pattern patronSiNo = Pattern.compile("(?i)^(si|no)$");
+        Pattern patronSiNo = Pattern.compile("(?i)^(si|sí|no)$");
 
         String respuesta;
         boolean centinela = true;
@@ -28,23 +28,38 @@ public class EjerciciosUtp11 {
 
             if (rangoValido) {
                 System.out.println("ingreso el numero: " + numero);
+                
+                // variable para while
+                boolean verificarRespuesta = false;
+                
+                // bucle donde se repite la pregunta "Desea continuar Si/No" hasta que el usuario escriba la opcion correcta
+                while(!verificarRespuesta){
+                    System.out.println("Desea continuar Si/No");
+                    respuesta = teclado.next();
+                    Matcher evaluadorRespuesta = patronSiNo.matcher(respuesta);
+                    boolean respuestaValido = evaluadorRespuesta.matches();
 
-                System.out.println("Desea continuar");
-                respuesta = teclado.next();
-                Matcher evaluadorRespuesta = patronSiNo.matcher(respuesta);
-                boolean respuestaValido = evaluadorRespuesta.matches();
+                    // Si el usuario escribe otra cosa diferente "Si/No" lanza mensaje de error
+                    if (respuestaValido) {
 
-                if (respuestaValido) {
-                    if (respuesta.equalsIgnoreCase("no")) {
-                        centinela = !respuestaValido;
+                        verificarRespuesta = true; // Salimos del bucle de pregunta
+
+                        /* si el usuario escribio "no" se termina el programa, caso contrario, 
+                           el progama continua desde el inicio del bucle principal*/
+                        if (respuesta.equalsIgnoreCase("no")) {
+                            centinela = !respuestaValido;
+                            System.out.println("Fin del programa.");
+                        }
+
+                    } else {
+                        System.out.println("Error: No te entendí. Escribe Si o No.");
                     }
-                    
-                } else {
-                    System.out.println("Error: No te entendí. Escribe Si o No.");
+                
                 }
+                
 
             } else {
-                System.out.println("numero no valido");
+                System.out.println("numero no valido. Intente de nuevo");
             }
 
         }
